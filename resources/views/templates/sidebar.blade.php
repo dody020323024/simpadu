@@ -6,12 +6,12 @@
      <a href="./index.html" class="brand-link">
        <!--begin::Brand Image-->
        <img
-         src="../assets/img/manunted.jpg"
+         src="../assets/img//E020323023 .webp"
          alt="AdminLTE Logo"
          class="brand-image opacity-75 shadow" />
        <!--end::Brand Image-->
        <!--begin::Brand Text-->
-       <span class="brand-text fw-light">RedDevil
+       <span class="brand-text fw-light">SIMPADU
        </span>
        <!--end::Brand Text-->
      </a>

@@ -9,3 +9,4 @@ class Prodi extends Model
     //
     protected $table = 'prodi';
 }
+

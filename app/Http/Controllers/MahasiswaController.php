@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\Prodi;
 use Illuminate\Http\Request;
 
 class MahasiswaController
@@ -12,22 +13,29 @@ class MahasiswaController
      */
     public function index()
     {
-       
+
         $data = [
             'nama' => 'Dody Putra Ramadhan',
             'foto' => 'wong ganteng.jpg'
         ];
-        $mahasiswa = Mahasiswa:: with ('prodi')->get();
+        $mahasiswa = Mahasiswa::with('prodi')->get();
 
-        return view('mahasiswa', compact ('data', 'mahasiswa'));
+        return view('mahasiswa.index', compact('data', 'mahasiswa'));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function prod()
+    public function create()
     {
-        //
+        $data = [
+            'nama' => 'Dody Putra Ramadhan',
+            'foto' => 'wong ganteng.jpg'
+
+        ];
+        $prodi = Prodi::all();
+        return view('mahasiswa.create', compact('data', 'prodi'));
     }
 
     /**
@@ -35,7 +43,9 @@ class MahasiswaController
      */
     public function store(Request $request)
     {
-        //
+        $data =$request->except('_token');
+        Mahasiswa::create($data);
+        return redirect('mahasiswa');
     }
 
     /**

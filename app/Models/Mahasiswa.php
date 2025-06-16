@@ -9,10 +9,10 @@ class Mahasiswa extends Model
 {
     //
     protected $table = 'mahasiswa';
+    protected $fillable = ['nim','password','nama','tanggallahir', 'telp','id_prodi', 'email', 'email','foto'];
 
-    public function prodi():BelongsTo
+    public function prodi(): BelongsTo
     {
-        return $this->belongsTo(Prodi::class , 'id_prodi' , 'id');
+        return $this->belongsTo(Prodi::class, 'id_prodi', 'id');
     }
 }
-

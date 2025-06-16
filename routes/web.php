@@ -9,4 +9,7 @@ use App\Http\Controllers\MahasiswaController;
 //});
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-route ::get('/mahasiswa', [MahasiswaController::class, 'index']);
+//route ::get('/mahasiswa', [MahasiswaController::class, 'index']);
+//route ::post('/mahasiswa', [MahasiswaController::class, 'store']);
+//route ::get('/mahasiswa/create', [MahasiswaController::class, 'create']);
+Route::resource('/mahasiswa', MahasiswaController::class);

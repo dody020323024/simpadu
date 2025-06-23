@@ -9,13 +9,14 @@
             <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0"> Menambah Data  </h3>
+                    <h3 class="mb-0"> edit data  </h3>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-end">
                         <li class="breadcrumb-item"><a href="{{url('/') }}" >home</a></li>
                         <li class="breadcrumb-item"><a href="{{url('mahasiswa')}}">mahasiswa/</a></li>
-                        <li class="breadcrumb-item active" aria current="page">tambah</li>
+                        <li class="breadcrumb-item active" aria current="page">edit</li>
+                        
                     </ol>
                    
                 </div>
@@ -39,12 +40,13 @@
                         <!-- /.card-header -->
                         <form action="{{url('mahasiswa')}}" method="POST" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
+                            
                                 <div class="card-body">
-
                                 <div class="form-group">
                                     <label for="nim">NIM</label>
                                     <input type="text" name="nim" id="nim" class="form-control @error('nim') is-invalid 
-                                    @enderror ">
+                                    @enderror " value="{{$mahasiswa->nim}}"disabled> 
                                     
                                      @error('nim')
                                     <div class="invalid-feedback" >
@@ -57,7 +59,7 @@
                                 <div class="form-group">
                                     <label for="password">password</label>
                                     <input type="password" name="password" id="password" class="form-control @error('password') is-invalid 
-                                    @enderror ">
+                                    @enderror">
                                      @error('password')
                                     <div class="invalid-feedback" >
                                         {{ $message }}
@@ -70,7 +72,7 @@
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
                                     <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid 
-                                    @enderror ">
+                                    @enderror " value="{{$mahasiswa->nama}}">
                                      @error('nama')
                                     <div class="invalid-feedback" >
                                         {{ $message }}
@@ -82,7 +84,7 @@
                                 <div class="form-group">
                                     <label for="tanggallahir">Tanggal Lahir</label>
                                     <input type="date" name="tanggallahir" id="tanggallahir" class="form-control @error('tanggallahir') is-invalid 
-                                    @enderror ">
+                                    @enderror "value="{{$mahasiswa->tanggallahir}}">
                                     @error('tanggallahir')
                                     <div class="invalid-feedback" >
                                         {{ $message }}
@@ -94,7 +96,7 @@
                                 <div class="form-group">
                                     <label for="telp">Telepon</label>
                                     <input type="text" name="telp" id="telp" class="form-control @error('telp') is-invalid 
-                                    @enderror ">
+                                    @enderror "value="{{$mahasiswa->telp}}" >
                                      @error('telp')
                                     <div class="invalid-feedback" >
                                         {{ $message }}
@@ -116,7 +118,14 @@
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" id="email" class="form-control 
+                                    <input type="email" name="email" id="email" class="form-control @error('email') is-invalid 
+                                    @enderror " value="{{$mahasiswa->email}}">
+                                     @error('email')
+                                    <div class="invalid-feedback" >
+                                        {{ $message }}
+                                    </div>
+                                        
+                                    @enderror
                                 </div>
                                 <div class="row mb-3">
                                     <label for="foto" class="col-sm-2 col-form-label">apload foto</label>

@@ -3,7 +3,7 @@
    <!--begin::Sidebar Brand-->
    <div class="sidebar-brand">
      <!--begin::Brand Link-->
-     <a href="./index.html" class="brand-link">
+     <a href="" class="brand-link">
        <!--begin::Brand Image-->
        <img
          src="../assets/img//E020323023 .webp"
@@ -29,12 +29,12 @@
          data-accordion="false">
 
          <li class="nav-item">
-           <a href="index.php" class="nav-link">
+           <a href="{{url('mahasiswa')}}" class="nav-link">
              <i class="nav-icon bi bi-palette"></i>
              <p>Mahasiswa</p>
            </a>
          <li class="nav-item">
-           <a href="prodi.php" class="nav-link">
+           <a href="{{url('prodi')}}" class="nav-link">
              <i class="nav-icon bi bi-palette"></i>
              <p>program studi</p>
            </a>

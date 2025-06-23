@@ -9,7 +9,7 @@
             <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0">Mahasiswa</h3>
+                    <h3 class="mb-0">Mahasiswa/</h3>
                 </div>
                 
             </div>
@@ -58,9 +58,15 @@
                                                 <td>{{ $m->email }}</td>
                                                 <td>{{ $m->prodi->nama }}</td>
                                                 <td>
-                                                    <a href="editmahasiswa.php?nim=<?= $m['nim']; ?>" class="btn btn-warning">edit </a>
-                                                    <a href="hapusmahasiswa.php?nim=<?= $m['nim']; ?>" class="btn btn-danger"
-                                                        onclick="return confirm('bujur jue kah ikam neh hendak mehepos?')">hapus</a>
+                                                    
+                                                    <form action="{{url("mahasiswa/$m->nim")}}" method="POST"
+                                                        class="d-inline">
+                                                        @method('delete')
+                                                        @csrf 
+                                                        <button class="btn btn-danger"
+                                                        onclick="return confirm('bujur jue kah ikam neh hendak mehepos?')">hapus</button>
+                                                        <a href="{{url("mahasiswa/$m->nim/edit")}}"
+                                                         class="btn btn-warning">edit </a>
                                                 </td>
                                             </tr>
                                         

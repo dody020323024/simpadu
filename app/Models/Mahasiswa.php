@@ -9,6 +9,8 @@ class Mahasiswa extends Model
 {
     //
     protected $table = 'mahasiswa';
+    protected $primaryKey = 'nim';
+    protected $keyType = 'string';
     protected $fillable = ['nim','password','nama','tanggallahir', 'telp','id_prodi', 'email', 'email','foto'];
 
     public function prodi(): BelongsTo

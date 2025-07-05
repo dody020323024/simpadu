@@ -9,7 +9,7 @@
             <!--begin::Row-->
             <div class="row">
                 <div class="col-sm-6">
-                    <h3 class="mb-0">Mahasiswa</h3>
+                    <h3 class="mb-0">Prodi</h3>
                 </div>
                 
             </div>
@@ -27,9 +27,9 @@
                 <div class="col-md-12">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h3 class="card-title">Data mahasiswa</h3>
+                            <h3 class="card-title">Data Prodi</h3>
                             <div class=" card-tools">
-                                <a href="{{route('mahasiswa.create')}}" class="btn btn-primary">tambah Mahasiswa</a>
+                                <a href="{{route('prodi.create')}}" class="btn btn-primary">tambah Prodi</a>
                             </div>
                         </div>
                             <!-- /.card-header -->
@@ -38,35 +38,29 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>NIM</th>
-                                            <th>Nama</th>
-                                            <th>Foto</th>
-                                            <th>Email</th>
-                                            <th>prodi</th>
-                                            <th>aksi</th>
+                                            <th>Nama Prodi</th>
+                                            <th>Kaprodi</th>
+                                            <th>Jurusan</th>
+                                            <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         
-                                        @foreach ($mahasiswa as $m) 
+                                        @foreach ($prodi as $p) 
                                             <tr class="align-middle">
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $m->nim}}</td>
-                                                <td>{{ $m->nama }}</td>
-                                                <td><img src="{{asset('storage/images/'.$m->foto)}}" alt="" width="100px"></td>
-                                                <td>{{ $m->email }}</td>
-                                                <td>{{ $m->prodi->nama ?? 'Prodi tidak ada' }}</td>
+                                                <td>{{ $p->nama }}</td>
+                                                <td>{{ $p->kaprodi }}</td>
+                                                <td>{{ $p->jurusan }}</td>
                                                 
-                                                <td>
-                                                    
-                                                    <form action="{{url("mahasiswa/". $m->nim)}}" method="POST"
-                                                        class="d-inline">
-                                                        @csrf 
-                                                        @method('DELETE') 
-                                                        <button class="btn btn-danger mb-2 mt-2"
-                                                        onclick="return confirm('bujur jue kah ikam neh hendak mehepos?')">hapus</button>
+                                                <td class="">
+                                                    <form action="{{url("prodi/$p->id")}}" method="POST" class="d-inline">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger mb-2 mt-2"
+                                                            onclick="return confirm('Yakin ingin menghapus data ini?')">hapus</button>
                                                     </form>
-                                                        <a href="{{url("mahasiswa/$m->nim/edit")}}"
+                                                        <a href="{{url("prodi/$p->id/edit")}}"
                                                         class="btn btn-warning">edit </a>
                                                 </td>
                                             </tr>

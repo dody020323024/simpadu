@@ -1,6 +1,7 @@
-@extends('templates.main')
+@extends('template.main')
 
 @section('content')
+
 <main class="app-main">
     <!--begin::App Content Header-->
     <div class="app-content-header">
@@ -80,10 +81,10 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="tanggallahir">Tanggal Lahir</label>
-                                    <input type="date" name="tanggallahir" id="tanggallahir" class="form-control @error('tanggallahir') is-invalid 
+                                    <label for="tanggalLahir">Tanggal Lahir</label>
+                                    <input type="date" name="tanggalLahir" id="tanggalLahir" class="form-control @error('tanggallahir') is-invalid 
                                     @enderror ">
-                                    @error('tanggallahir')
+                                    @error('tanggalLahir')
                                     <div class="invalid-feedback" >
                                         {{ $message }}
                                     </div>
@@ -130,34 +131,24 @@
                                         
                                     @enderror
                                 </div>
-                                
-                              
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <a label="index.php" class="btn btn-danger float-start"> kembali</a>
+                                <div class="card-footer mt-2">
+                                <a href="{{ route('mahasiswa.index') }}" class="btn btn-danger float-start"> kembali</a>
                                 <button type="submit" class="btn btn-primary float-end"> simpan </button>
+                                </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                     <!-- /.card-body -->
-
                 </div>
                 <!-- /.card -->
-
                 <!-- /.card -->
             </div>
             <!-- /.col -->
-
             <!-- /.col -->
         </div>
         <!--begin::Row-->
-        <!-- /.row (main row) -->
-    </div>
-    <!--end::Container-->
-    </div>
-    <!--end::App Content-->
 </main>
-
+    <!--end::App Content-->
 @endsection
+

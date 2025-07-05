@@ -6,7 +6,7 @@
      <a href="" class="brand-link">
        <!--begin::Brand Image-->
        <img
-         src="../assets/img//E020323023 .webp"
+         src="/assets/img/E020323023.png"
          alt="AdminLTE Logo"
          class="brand-image opacity-75 shadow" />
        <!--end::Brand Image-->

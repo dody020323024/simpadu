@@ -91,7 +91,6 @@
                 src="{{ asset('assets/img/' . $data['foto'])}}"
                 class="user-image rounded-circle shadow"
                 alt="User Image" />
-             
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
               <!--begin::User Image-->
@@ -106,7 +105,6 @@
               </li>
               <!--end::User Image-->
               <!--begin::Menu Body-->
-             
               <!--end::Menu Body-->
               <!--begin::Menu Footer-->
               <li class="user-footer">
@@ -124,8 +122,11 @@
     </nav>
     <!--end::Header-->
 
-  @include("templates.sidebar")
-  @yield("content")
+  @include('template.sidebar')
+
+  @yield('content')
+
+
 
     <!--begin::Footer-->
 <footer class="app-footer">

@@ -6,9 +6,10 @@ use App\Models\Prodi;
 use App\Models\Mahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Contracts\Support\ValidatedData;
 
-class MahasiswaController
+class MahasiswaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -50,7 +51,7 @@ class MahasiswaController
                 'nim' => 'required|unique:mahasiswa|',
                 'password' => 'required',
                 'nama' => 'required',
-                'tanggallahir' => 'required',
+                'tanggalLahir' => 'required',
                 'telp' => 'required|max:24',
                 'foto' => 'required',
                 'email' => 'required',
@@ -59,15 +60,18 @@ class MahasiswaController
                 'nim.required' => 'NIM harus diisi!',
                 'password.required' => 'password harus diisi!',
                 'nama.required' => 'nama harus diisi!',
-                'tanggallahir.required' => 'tanggal lahir harus diisi!',
+                'tanggalLahir.required' => 'tanggal lahir harus diisi!',
                 'telp.required' => 'nomor harus diisi!',
                 'foto.required' => 'foto harus diisi!',
                 'email.required' => 'email harus diisi!',
             ]
         );
+        if ($request->hasFile('foto')) {
+            $filePath = $request->file('foto')->store('images', 'public');
+            $validateData['foto'] = basename($filePath);
+        }
         $validateData['password'] = Hash::make($validateData['password']);
         $data = array_merge($validateData, $request->only('id_prodi'));
-
         Mahasiswa::create($data);
         return redirect('mahasiswa');
     }
@@ -103,49 +107,52 @@ class MahasiswaController
     {
         $validateData = $request->validate(
             [
-                'nim' => 'required|unique:mahasiswa|',
-                'password' => 'required',
                 'nama' => 'required',
                 'tanggallahir' => 'required',
                 'telp' => 'required|max:24',
-                'foto' => 'required',
+                'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
                 'email' => 'required',
             ],
             [
-                'nim.required' => 'NIM harus diisi!',
-                'password.required' => 'password harus diisi!',
                 'nama.required' => 'nama harus diisi!',
                 'tanggallahir.required' => 'tanggal lahir harus diisi!',
                 'telp.required' => 'nomor harus diisi!',
-                'foto.required' => 'foto harus diisi!',
                 'email.required' => 'email harus diisi!',
             ]
         );
-       // $mahasiswa = Mahasiswa::find($id);
-        //if ($request->file('foto')) {
-          //  if ($mahasiswa->foto) {
-            //    Storage::delete($mahasiswa->foto);
-            //}
-            //$validateData['foto'] = $request->file('foto')->store('mahasiswa');
-        //}
-        //if ($request->input(['password'])) {
-          //  $validateData['password'] = Hash::make($request->password);
-        //}
-        //$data = array_merge($validateData, $request->only('id_prodi'));
-        //Mahasiswa::where('nim', $id)->update($data);
-        //return redirect('mahasiswa');
+        $mahasiswa = Mahasiswa::find($id);
+        if ($request->hasFile('foto')) {
+            if ($mahasiswa->foto) {
+                Storage::disk('public')->delete($mahasiswa->foto);
+            }
+            $filePath = $request->file('foto')->store('images', 'public');
+            $validateData['foto'] = basename($filePath);
+        } else {
+            $validateData['foto'] = $mahasiswa->foto;
+        }
+
+        if ($request->input('password')) {
+            $validateData['password'] = Hash::make($request->password);
+        } else {
+            $validateData['password'] = $mahasiswa->password;
+        }
+
+        $validateData['password'] = Hash::make($validateData['password']);
+        $data = array_merge($validateData, $request->only('id_prodi'));
+        Mahasiswa::where('nim', $id)->update($data);
+        return redirect('/mahasiswa');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    //public function destroy(string $id)
-    //{
-      //  $mahasiswa = Mahasiswa::find($id);
-    //    if ($mahasiswa->foto) {
-        //    storage::delete($mahasiswa->foto);
-    //    }
-      //  Mahasiswa::destroy($id);
-        //return redirect('mahasiswa');
-  //  }
+    public function destroy(string $id)
+    {
+        $mahasiswa = Mahasiswa::find($id);
+        if ($mahasiswa->foto) {
+            Storage::disk('public')->delete($mahasiswa->foto);
+        }
+        Mahasiswa::destroy($id);
+        return redirect('/mahasiswa');
+    }
 }

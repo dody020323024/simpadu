@@ -1,4 +1,4 @@
-@extends('templates.main')
+@extends('template.main')
 
 @section('content')
 <main class="app-main">
@@ -38,7 +38,7 @@
                             <h3 class="card-title">data prodi</h3>
                         </div>
                         <!-- /.card-header -->
-                        <form action="{{url('mahasiswa')}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{url('mahasiswa/'.$mahasiswa->nim)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
                             
@@ -48,7 +48,7 @@
                                     <input type="text" name="nim" id="nim" class="form-control @error('nim') is-invalid 
                                     @enderror " value="{{$mahasiswa->nim}}"disabled> 
                                     
-                                     @error('nim')
+                                    @error('nim')
                                     <div class="invalid-feedback" >
                                         {{ $message }}
                                     </div>
@@ -60,7 +60,7 @@
                                     <label for="password">password</label>
                                     <input type="password" name="password" id="password" class="form-control @error('password') is-invalid 
                                     @enderror">
-                                     @error('password')
+                                    @error('password')
                                     <div class="invalid-feedback" >
                                         {{ $message }}
                                     </div>
@@ -84,8 +84,8 @@
                                 <div class="form-group">
                                     <label for="tanggallahir">Tanggal Lahir</label>
                                     <input type="date" name="tanggallahir" id="tanggallahir" class="form-control @error('tanggallahir') is-invalid 
-                                    @enderror "value="{{$mahasiswa->tanggallahir}}">
-                                    @error('tanggallahir')
+                                    @enderror "value="{{$mahasiswa->tanggalLahir}}" >
+                                    @error('tanggalLahir')
                                     <div class="invalid-feedback" >
                                         {{ $message }}
                                     </div>
@@ -139,14 +139,12 @@
                                         
                                     @enderror
                                 </div>
-                                
-                              
-                                    </select>
+                                <div class="card-footer mt-2">
+                                    <a href="{{route('mahasiswa.index')}}" class="btn btn-danger float-start"> kembali</a>
+                                    <button type="submit" class="btn btn-primary float-end"> simpan </button>
                                 </div>
-                            </div>
-                            <div class="row mb-3">
-                                <a label="index.php" class="btn btn-danger float-start"> kembali</a>
-                                <button type="submit" class="btn btn-primary float-end"> simpan </button>
+                                
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -162,10 +160,7 @@
             <!-- /.col -->
         </div>
         <!--begin::Row-->
-        <!-- /.row (main row) -->
-    </div>
-    <!--end::Container-->
-    </div>
+
     <!--end::App Content-->
 </main>
 

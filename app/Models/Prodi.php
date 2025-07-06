@@ -18,5 +18,6 @@ class Prodi extends Model
     protected $primaryKey = 'id';
     protected $dates = ['deleted_at'];
     
+    
 }
 

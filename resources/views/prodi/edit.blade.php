@@ -73,7 +73,7 @@
                                 </div>
 
                                 <div class="card-footer mt-2">
-                                <a href="{{ route('mahasiswa.index') }}" class="btn btn-danger float-start"> kembali</a>
+                                <a href="{{ route('prodi.index') }}" class="btn btn-danger float-start"> kembali</a>
                                 <button type="submit" class="btn btn-primary float-end"> simpan </button>
                                 </div>
                                 </div>
